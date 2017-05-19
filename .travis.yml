@@ -16,6 +16,9 @@ matrix:
       go: 1.8.x
     - os: osx
       go: tip
+
+env:
+
 go:
   - 1.7.x
   - 1.8.x
@@ -28,7 +31,12 @@ install:
 
 before_script:
   - go get -v honnef.co/go/tools/cmd/{gosimple,staticcheck,megacheck}
+  - go get github.com/mitchellh/gox
 
 script:
   - go test -v .
   - megacheck .
+
+after_success:
+  - go get -u github.com/sean-brandt/gox
+  - gox -os "linux darwin windows" -arch '!mipslpe !s390x !ppc64' -osarch '!darwin/arm !darwin/arm64'
