@@ -29,4 +29,6 @@ install:
 before_script:
   - go get -v honnef.co/go/tools/cmd/{gosimple,staticcheck,megacheck}
 
-script: go test -v .
+script:
+  - go test -v .
+  - megacheck .

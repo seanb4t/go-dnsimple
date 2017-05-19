@@ -115,9 +115,14 @@ func main() {
 							recordData := context.String("data")
 
 							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, false)
+							if err != nil {
+								log.WithError(err).Fatal("Could not create command operation data.")
+								return cli.Exit("Cannot create record", 1)
+							}
 
 							err = crudOp.Create()
 							if err != nil {
+								log.WithError(err).Fatal("Could not create record")
 								return cli.Exit("Cannot create record", 1)
 							}
 							return nil
@@ -151,6 +156,10 @@ func main() {
 							recordData := context.String("data")
 
 							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, false)
+							if err != nil {
+								log.WithError(err).Fatal("Could not create command operation data.")
+								return cli.Exit("Cannot delete record", 1)
+							}
 
 							err = crudOp.Delete()
 							if err != nil {
@@ -187,6 +196,10 @@ func main() {
 							recordData := context.String("data")
 
 							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, false)
+							if err != nil {
+								log.WithError(err).Fatal("Could not create command operation data.")
+								return cli.Exit("Cannot upsert record", 1)
+							}
 
 							err = crudOp.Upsert()
 							if err != nil {
