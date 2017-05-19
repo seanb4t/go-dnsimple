@@ -1,0 +1,27 @@
+---
+language: go
+sudo: false
+notifications:
+  email: false
+
+matrix:
+  include:
+    - os: linux
+      go: 1.7.x
+    - os: linux
+      go: 1.8.x
+    - os: linux
+      go: tip
+    - os: osx
+      go: 1.8.x
+    - os: osx
+      go: tip
+go:
+  - 1.7.x
+  - 1.8.x
+  - master
+
+before_script:
+  - go get -v honnef.co/go/tools/cmd/{gosimple,staticcheck,megacheck}
+  - go get -u github.com/golang/dep/cmd/dep
+  

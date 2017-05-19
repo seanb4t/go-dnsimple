@@ -1,0 +1,43 @@
+memo = "5db1483cca1b90aec772b58cf05965621ee372f6f8dd410ba53819451bd05c4f"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/dghubble/sling"
+  packages = ["."]
+  revision = "bbfb8293bd33a6baad33d718aacf66ef73a29f30"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/dnsimple/dnsimple-go"
+  packages = ["dnsimple"]
+  revision = "5a5b427618a76f9eed5ede0f3e6306fbd9311d2e"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/google/go-querystring"
+  packages = ["query"]
+  revision = "53e6ce116135b80d037921a7fdd5138cf32d7a8a"
+
+[[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/sirupsen/logrus"
+  packages = ["."]
+  revision = "5e5dc898656f695e2a086b8e12559febbfc01562"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/sys"
+  packages = ["unix"]
+  revision = "a2e06a18b0d52d8cb2010e04b372a1965d8e3439"
+
+[[projects]]
+  branch = "v2"
+  name = "gopkg.in/urfave/cli.v2"
+  packages = ["."]
+  revision = "61c3eb6ba1da1df17cd50f1456a9252d92bf5edd"
