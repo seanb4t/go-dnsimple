@@ -114,7 +114,7 @@ func main() {
 							recordType := context.String("type")
 							recordData := context.String("data")
 
-							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, false)
+							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, context.Bool("ipv6"))
 							if err != nil {
 								log.WithError(err).Fatal("Could not create command operation data.")
 								return cli.Exit("Cannot create record", 1)
@@ -155,7 +155,7 @@ func main() {
 							recordType := context.String("type")
 							recordData := context.String("data")
 
-							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, false)
+							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, context.Bool("ipv6"))
 							if err != nil {
 								log.WithError(err).Fatal("Could not create command operation data.")
 								return cli.Exit("Cannot delete record", 1)
@@ -195,7 +195,7 @@ func main() {
 							recordType := context.String("type")
 							recordData := context.String("data")
 
-							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, false)
+							crudOp, err := NewOperationData(dns, recordData, recordName, domainName, recordType, context.Bool("ipv6"))
 							if err != nil {
 								log.WithError(err).Fatal("Could not create command operation data.")
 								return cli.Exit("Cannot upsert record", 1)
