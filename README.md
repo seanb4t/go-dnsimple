@@ -1,5 +1,7 @@
 # go-dnsimple
 
+[![Build Status](https://travis-ci.org/sean-brandt/go-dnsimple.svg?branch=master)](https://travis-ci.org/sean-brandt/go-dnsimple)
+
 A CLI for DNSimple to update A and AAAA records ( create, update, and delete ). Allows for either the lookup of the
 current IP address or specification of one to use.
 
