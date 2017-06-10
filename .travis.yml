@@ -1,42 +1,46 @@
----
 language: go
 sudo: false
 notifications:
   email: false
-
 matrix:
   include:
-    - os: linux
-      go: 1.7.x
-    - os: linux
-      go: 1.8.x
-    - os: linux
-      go: tip
-    - os: osx
-      go: 1.8.x
-    - os: osx
-      go: tip
-
+  - os: linux
+    go: 1.7.x
+  - os: linux
+    go: 1.8.x
+  - os: linux
+    go: tip
+  - os: osx
+    go: 1.8.x
+  - os: osx
+    go: tip
 env:
-
 go:
-  - 1.7.x
-  - 1.8.x
-  - master
-
+- 1.7.x
+- 1.8.x
+- master
 install:
-  - go get -u github.com/golang/dep/cmd/dep
-  - dep ensure
-  - dep status
-
+- go get -u github.com/golang/dep/cmd/dep
+- dep ensure
+- dep status
 before_script:
-  - go get -v honnef.co/go/tools/cmd/{gosimple,staticcheck,megacheck}
-  - go get github.com/mitchellh/gox
-
+- go get -v honnef.co/go/tools/cmd/{gosimple,staticcheck,megacheck}
+- go get github.com/mitchellh/gox
 script:
-  - go test -v .
-  - megacheck .
-
+- go test -v .
+- megacheck .
 after_success:
-  - go get -u github.com/sean-brandt/gox
-  - gox -os "linux darwin windows" -arch '!mipslpe !s390x !ppc64' -osarch '!darwin/arm !darwin/arm64'
+- go get -u github.com/sean-brandt/gox
+- gox -os "linux darwin windows" -arch '!mipslpe !s390x !ppc64' -osarch '!darwin/arm
+  !darwin/arm64'
+
+deploy:
+  provider: releases
+  api_key:
+    secure: ZFgqkJN7gj2RmlBpqlkGR5H8m8xK/VCLWeP2HHqYWs1SaV6LJgp4zooJUw1Dx1TGPCWs2iVX1FROyBDROX2BPGLLiSygQIn38UHEOVwrWw2KSLfBNf0uaplpP21qjmHabtxt661mEKTN8moZJkksmdk/4WIPMIwBUr81f10vgSQih9VahWVk4XN0aO6+ijfkytoCKp9EdEHwv2ZbMCfHrkaIcPvFOzSZqGFpw7tAq2sX+iIn36aXth+hWKeeXB/fzot9y0/5ZJyKwmal/5F762/zfhPrWk+Iy4q/KSKbf82igZnn3r5QH+g5H6Y+1t1JQxJG/Eb8zGyUwrFDGC0nyj3B+Jew8aw+kBQjkcD6R/dgs0kga4hkVax9ss8Dc18GRejA3lDDVxonSCJMeT1oyYbRyhmcFBdfpmXzHbH9uVq1/xA6WdfzsdqfSjtJUVSsVj6gRWO/EMNjf0P3NKQ9nVV0sMM95mbFSJLMfxSHW7aO1/uspKAwZpvWSygYQx8ASRr+FprVDc5HypeAF85ReGOA2+ZFVOYKohQ/kmvmSL59pmyybmDOBCV/bKInmJcx75g4VvvKTDny4133RunqGPAXX6FkZAgBaVlXp4NsnEvFIS2I6R1xv+jJmD7YXuvjhRC9IwwtiCybfITcbxNIWn6JHukUoT0sT4oKYlIu4wY=
+  file: go-dnsimple_*
+  file_glob: true
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: sean-brandt/go-dnsimple
