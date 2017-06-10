@@ -44,3 +44,4 @@ deploy:
   on:
     tags: true
     repo: sean-brandt/go-dnsimple
+    condition: $TRAVIS_GO_VERSION =~ ^1\.8\.*$
