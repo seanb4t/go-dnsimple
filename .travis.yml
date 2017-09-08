@@ -8,16 +8,10 @@ matrix:
     go: 1.9.x
   - os: linux
     go: 1.8.x
-  - os: linux
-    go: 1.7.x
-  - os: linux
-    go: tip
 env:
 go:
-- 1.7.x
 - 1.8.x
 - 1.9.x
-- master
 install:
 - go get -u github.com/golang/dep/cmd/dep
 - dep ensure
