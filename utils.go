@@ -13,7 +13,7 @@ func LookupCurrentIP(ipv6 bool) (*ipAddress, error) {
 	} else {
 		url = "https://ipv4bot.whatismyipaddress.com"
 	}
-	req, err := sling.New().Base(url).Path(".json").ReceiveSuccess(address)
+	req, err := sling.New().Base(url).ReceiveSuccess(address)
 	if err != nil {
 		log.WithField("request", req).WithError(err).Error("Unable to determine current V4 IP address")
 		return nil, err
