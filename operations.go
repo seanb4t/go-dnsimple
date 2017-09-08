@@ -6,7 +6,7 @@ import (
 )
 
 type ipAddress struct {
-	Address string `json:"address,omitempty"`
+	Address string
 }
 
 type CrudOperationData struct {

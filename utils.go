@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/dghubble/sling"
+	"github.com/go-resty/resty"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -13,11 +13,12 @@ func LookupCurrentIP(ipv6 bool) (*ipAddress, error) {
 	} else {
 		url = "https://ipv4bot.whatismyipaddress.com"
 	}
-	req, err := sling.New().Base(url).ReceiveSuccess(address)
+	resp, err := resty.R().SetHeader("Content-Type", "text/plain").Get(url)
 	if err != nil {
-		log.WithField("request", req).WithError(err).Error("Unable to determine current V4 IP address")
+		log.WithField("resp", resp).WithError(err).Error("Unable to determine current V4 IP address")
 		return nil, err
 	}
+	address.Address = resp.String()
 	log.WithField("dynamicIP", *address).Debug("Dynamic IP deteremined.")
 	return address, nil
 }
