@@ -30,3 +30,5 @@ deploy:
   on:
     tags: true
     repo: sean-brandt/go-dnsimple
+    go: "1.9"
+    branch: master
