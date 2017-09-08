@@ -49,24 +49,18 @@
 ## what source location any dependent projects specify.
 # source = "https://github.com/myfork/package.git"
 
-
-
-[[dependencies]]
+[[constraint]]
   branch = "master"
   name = "github.com/dghubble/sling"
 
-[[dependencies]]
+[[constraint]]
   branch = "master"
   name = "github.com/dnsimple/dnsimple-go"
 
-[[dependencies]]
+[[constraint]]
   branch = "master"
   name = "github.com/sirupsen/logrus"
 
-[[dependencies]]
-  branch = "master"
-  name = "golang.org/x/sys"
-
-[[dependencies]]
+[[constraint]]
   branch = "v2"
   name = "gopkg.in/urfave/cli.v2"
