@@ -9,9 +9,9 @@ func LookupCurrentIP(ipv6 bool) (*ipAddress, error) {
 	address := new(ipAddress)
 	var url string
 	if ipv6 {
-		url = "https://v6.ident.me"
+		url = "https://ipv6bot.whatismyipaddress.com"
 	} else {
-		url = "https://v4.ident.me"
+		url = "https://ipv4bot.whatismyipaddress.com"
 	}
 	req, err := sling.New().Base(url).Path(".json").ReceiveSuccess(address)
 	if err != nil {
