@@ -5,8 +5,8 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-func LookupCurrentIP(ipv6 bool) (*ipAddress, error) {
-	address := new(ipAddress)
+func LookupCurrentIP(ipv6 bool) (*RecordData, error) {
+	address := new(RecordData)
 	var url string
 	if ipv6 {
 		url = "https://ipv6bot.whatismyipaddress.com"
@@ -18,7 +18,7 @@ func LookupCurrentIP(ipv6 bool) (*ipAddress, error) {
 		log.WithField("resp", resp).WithError(err).Error("Unable to determine current V4 IP address")
 		return nil, err
 	}
-	address.Address = resp.String()
+	address.Value = resp.String()
 	log.WithField("dynamicIP", *address).Debug("Dynamic IP deteremined.")
 	return address, nil
 }

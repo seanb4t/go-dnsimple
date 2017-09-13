@@ -5,13 +5,13 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type ipAddress struct {
-	Address string
+type RecordData struct {
+	Value string
 }
 
 type CrudOperationData struct {
 	dns *DNSimpleAPI
-	ipAddress
+	RecordData
 	Domain       string
 	RecordName   string
 	RecordType   string
@@ -34,10 +34,10 @@ func NewOperationData(dns *DNSimpleAPI, recordData string, recordName string, do
 		if err != nil {
 			return nil, errors.Wrap(err, "Unable to lookup current IP")
 		}
-		data.Address = resp.Address
-		log.Infof("Current dynamic ip is: %s", data.Address)
+		data.Value = resp.Value
+		log.Infof("Current dynamic ip is: %s", data.Value)
 	} else {
-		data.Address = recordData
+		data.Value = recordData
 	}
 
 	resp, _, err := dns.GetZone(domain)
@@ -58,46 +58,46 @@ func NewOperationData(dns *DNSimpleAPI, recordData string, recordName string, do
 }
 
 func (data *CrudOperationData) Create() (err error) {
-	_, err = data.dns.CreateRecord(data.RecordName, data.Domain, data.RecordType, data.Address)
+	_, err = data.dns.CreateRecord(data.RecordName, data.Domain, data.RecordType, data.Value)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"accountID":  data.dns.AccountID,
 			"domain":     data.Domain,
 			"recordName": data.RecordName,
 			"type":       data.RecordType,
-			"recordData": data.Address,
+			"recordData": data.Value,
 		}).WithError(err).Error("Cannot create record")
-		return errors.Wrapf(err, "Cannot create record %s with data: %s in domain: %s", data.RecordName, data.Address, data.Domain)
+		return errors.Wrapf(err, "Cannot create record %s with data: %s in domain: %s", data.RecordName, data.Value, data.Domain)
 	}
 	return nil
 }
 
 func (data *CrudOperationData) Delete() (err error) {
-	_, err = data.dns.DeleteRecord(data.RecordName, data.Domain, data.RecordType, data.Address)
+	_, err = data.dns.DeleteRecord(data.RecordName, data.Domain, data.RecordType, data.Value)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"accountID":  data.dns.AccountID,
 			"domain":     data.Domain,
 			"recordName": data.RecordName,
 			"type":       data.RecordType,
-			"recordData": data.Address,
+			"recordData": data.Value,
 		}).WithError(err).Error("Cannot create record")
-		return errors.Wrapf(err, "Cannot create record %s with data: %s in domain: %s", data.RecordName, data.Address, data.Domain)
+		return errors.Wrapf(err, "Cannot create record %s with data: %s in domain: %s", data.RecordName, data.Value, data.Domain)
 	}
 	return nil
 }
 
 func (data *CrudOperationData) Upsert() (err error) {
-	resp, err := data.dns.UpsertRecord(data.RecordName, data.Domain, data.RecordType, data.Address)
+	resp, err := data.dns.UpsertRecord(data.RecordName, data.Domain, data.RecordType, data.Value)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"accountID":  data.dns.AccountID,
 			"domain":     data.Domain,
 			"recordName": data.RecordName,
 			"type":       data.RecordType,
-			"recordData": data.Address,
+			"recordData": data.Value,
 		}).WithError(err).Error("Cannot update/create record")
-		return errors.Wrapf(err, "Cannot update/create record %s with data: %s in domain: %s", data.RecordName, data.Address, data.Domain)
+		return errors.Wrapf(err, "Cannot update/create record %s with data: %s in domain: %s", data.RecordName, data.Value, data.Domain)
 	}
 	log.WithField("response", resp).Debug("Record upsert complete.")
 	log.WithFields(log.Fields{
