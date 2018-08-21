@@ -51,10 +51,6 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/dghubble/sling"
-
-[[constraint]]
-  branch = "master"
   name = "github.com/dnsimple/dnsimple-go"
 
 [[constraint]]

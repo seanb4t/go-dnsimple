@@ -4,21 +4,18 @@ notifications:
   email: false
 env:
 go:
-- 1.9.x
+- 1.10.x
 install:
 - go get -u github.com/golang/dep/cmd/dep
 - dep ensure
 - dep status
 before_script:
-- go get -v honnef.co/go/tools/cmd/{gosimple,staticcheck,megacheck}
 - go get github.com/mitchellh/gox
 script:
 - go test -v .
-- megacheck .
 after_success:
 - go get -u github.com/sean-brandt/gox
-- gox -os "linux darwin windows" -arch '!mipslpe !s390x !ppc64' -osarch '!darwin/arm
-  !darwin/arm64'
+- gox -os "linux darwin windows" -arch '!mipslpe !mips64le !s390x !ppc64 !ppc64le !mips64' -osarch '!darwin/arm !darwin/arm64 !darwin/386 !windows/386'
 
 deploy:
   provider: releases
@@ -30,5 +27,5 @@ deploy:
   on:
     tags: true
     repo: sean-brandt/go-dnsimple
-    go: "1.9"
+    go: "1.10"
     branch: master

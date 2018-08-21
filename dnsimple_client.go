@@ -100,6 +100,14 @@ func (dns *DNSimpleAPI) UpsertRecord(name string, domain string, addrType string
 
 	zoneRecord, exists, _ := dns.GetZoneRecord(name, domain, addrType)
 
+	if exists && record.Type == "AAAA" {
+		resp, err := dns.Client.Zones.DeleteRecord(dns.AccountID, domain, zoneRecord.ID)
+		if err != nil {
+			return nil, err
+		}
+		return resp.Data, nil
+	}
+
 	if exists {
 		resp, err := dns.Client.Zones.UpdateRecord(dns.AccountID, domain, zoneRecord.ID, record)
 		if err != nil {
