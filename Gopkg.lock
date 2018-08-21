@@ -3,59 +3,76 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:349e53a6e3f04d691a07ff97ee8ec3acafd25233ea432ace44f6a02474dd3d03"
   name = "github.com/dnsimple/dnsimple-go"
   packages = ["dnsimple"]
+  pruneopts = ""
   revision = "0ecf1d4a5fc2c8d287105bcd5acaaa61f259746f"
 
 [[projects]]
+  digest = "1:db9be2eabe132828a689af1f7fe63764ab1fb04168b8b6a78f35daf45328da3d"
   name = "github.com/go-resty/resty"
   packages = ["."]
+  pruneopts = ""
   revision = "fc3ad735b5565cada42d34bc298573fd3fe5adc6"
   version = "v1.6"
 
 [[projects]]
   branch = "master"
+  digest = "1:9abc49f39e3e23e262594bb4fb70abf74c0c99e94f99153f43b143805e850719"
   name = "github.com/google/go-querystring"
   packages = ["query"]
+  pruneopts = ""
   revision = "53e6ce116135b80d037921a7fdd5138cf32d7a8a"
 
 [[projects]]
+  digest = "1:7365acd48986e205ccb8652cc746f09c8b7876030d53710ea6ef7d0bd0dcd7ca"
   name = "github.com/pkg/errors"
   packages = ["."]
+  pruneopts = ""
   revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
   version = "v0.8.0"
 
 [[projects]]
   branch = "master"
+  digest = "1:e783e1c111e14204242c3b6c7cb909a621f95fe6f789593b8fb2a16f8682ab21"
   name = "github.com/sirupsen/logrus"
   packages = ["."]
+  pruneopts = ""
   revision = "e3292c4c4d7fc915224d48222565b02f6af1900e"
 
 [[projects]]
   branch = "master"
+  digest = "1:6ef14be530be39b6b9d75d54ce1d546ae9231e652d9e3eef198cbb19ce8ed3e7"
   name = "golang.org/x/crypto"
   packages = ["ssh/terminal"]
+  pruneopts = ""
   revision = "a49355c7e3f8fe157a85be2f77e6e269a0f89602"
 
 [[projects]]
   branch = "master"
+  digest = "1:4656104e65eed39be4ad82d1c2d31ccb391ba51817ccfbb6140562b141392b71"
   name = "golang.org/x/net"
   packages = [
     "idna",
-    "publicsuffix"
+    "publicsuffix",
   ]
+  pruneopts = ""
   revision = "afe8f62b1d6bbd81f31868121a50b06d8188e1f9"
 
 [[projects]]
   branch = "master"
+  digest = "1:37bc80005adfac77fba493f73557385be7d5dbd0a8a58d30d94eb3e75476860d"
   name = "golang.org/x/sys"
   packages = [
     "unix",
-    "windows"
+    "windows",
   ]
+  pruneopts = ""
   revision = "c4afb3effaa53fd9a06ca61262dc7ce8df4c081b"
 
 [[projects]]
+  digest = "1:5acd3512b047305d49e8763eef7ba423901e85d5dd2fd1e71778a0ea8de10bd4"
   name = "golang.org/x/text"
   packages = [
     "collate",
@@ -71,20 +88,29 @@
     "unicode/bidi",
     "unicode/cldr",
     "unicode/norm",
-    "unicode/rangetable"
+    "unicode/rangetable",
   ]
+  pruneopts = ""
   revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
   version = "v0.3.0"
 
 [[projects]]
   branch = "v2"
+  digest = "1:eaef15d38dc2b0f15ecce8d3aff44bd0301ce7e6574e935446e6a7d629546669"
   name = "gopkg.in/urfave/cli.v2"
   packages = ["."]
+  pruneopts = ""
   revision = "d3ae77c26ac8db90639677e4831a728d33c36111"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "beee277f3640d1aeaff5d9e47d1bc5026b7b33e97e8a127ee80c6037c8979219"
+  input-imports = [
+    "github.com/dnsimple/dnsimple-go/dnsimple",
+    "github.com/go-resty/resty",
+    "github.com/pkg/errors",
+    "github.com/sirupsen/logrus",
+    "gopkg.in/urfave/cli.v2",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
