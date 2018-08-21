@@ -1,11 +1,11 @@
 package main
 
 import (
-	"strconv"
-
+	"fmt"
 	"github.com/dnsimple/dnsimple-go/dnsimple"
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
+	"strconv"
 )
 
 type DNSimpleAPI struct {
@@ -32,15 +32,17 @@ func NewDNSimpleAPI(oauthToken string) (*DNSimpleAPI, error) {
 		log.WithError(err).Fatal("Cannot get DNSimple whoami info")
 		return nil, errors.Wrap(err, "Unable to authenticate and retrieve DNSimple whoami info")
 	} else {
-		log.WithField("whoami", whoami.Data).Debug("DNSimple auth complete, whoami data retrieved")
 
 		if whoami.Data.Account != nil {
-			api.AccountID = strconv.Itoa(whoami.Data.Account.ID)
+			log.WithField("accountId", fmt.Sprint(whoami.Data.Account.ID)).Info("Account Id")
+			api.AccountID = strconv.FormatInt(whoami.Data.Account.ID, 10)
 		} else {
-			api.AccountID = strconv.Itoa(whoami.Data.User.ID)
+			log.WithField("userId", fmt.Sprint(whoami.Data.User.ID)).Info("User Id")
+			api.AccountID = strconv.FormatInt(whoami.Data.User.ID, 10)
 		}
 	}
 
+	log.WithField("api.AccountID", api.AccountID).Info("API Account Id chosen")
 	log.WithFields(log.Fields{
 		"AccountID": api.AccountID,
 	}).Info("Initialized Client.")
